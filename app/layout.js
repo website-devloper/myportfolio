@@ -26,6 +26,7 @@ export default function RootLayout({ children }) {
         <Navbar/>
         {children}
         <script src="/assets/js/aos.js"></script>
+        <script src="https://kit.fontawesome.com/48adce65bb.js" crossorigin="anonymous"></script>
       </body>
     </html>
   );

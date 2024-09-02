@@ -37,11 +37,7 @@ export default function Navbar() {
                                 <li className="nav-item">
                                     <a className="nav-link" href="/contactus">Contact us</a>
                                 </li>
-                                <li className="nav-item">
-                                    <a id="search-bar-bt" className="nav-link" href="#">
-                                        <i className="fa-solid fa-magnifying-glass"></i>
-                                    </a>
-                                </li>
+                                
                                 <li className="nav-item">
                                     <a className="nav-link nav-hrf btn-hover1" href="">Get In Touch</a>
                                 </li>
