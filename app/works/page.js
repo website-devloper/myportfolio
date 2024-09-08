@@ -58,9 +58,13 @@ export default function Home() {
       {/* //////////////////////////////////////////// */}
 
       <section >
-        <div class="about-hero container">
-          <h1 class=" text-center">Our Work</h1>
-          <p class="text-center about-p">Here are Some of the Selected projects that Showcase my Passion for Web development</p>
+        <div className="about-hero container">
+          <div className="spotlight-container1">
+            <div className="spotlight1"></div>
+            <h1 className=" text-center">Our Work</h1>
+
+          </div>
+          <p className="text-center about-p">Here is a Handful of our Projects that are Among the Greatest that Confirm our commitment to introducing visually impacting Web Solutions</p>
         </div>
       </section>
 
@@ -76,8 +80,10 @@ export default function Home() {
                 <div className="card-body">
                   <h5>Companies management</h5>
                   <p className="card-text p-f-s">
-                    Developed a responsive Laravel-based dashboard featuring CRUD functionality for company details.
-                    Implemented role-based access control, ensuring tailored user experiences for super-admins, admins, managers, and partners.
+                    Live demo A powerful and flexible dashboard for Laravel that is designed to be beautiful,
+                    elegant​. it provides role-based access control which means user
+                    experiences personalized for super-admins admins managers partners so they can safely and
+                    effectively work.
                   </p>
                 </div>
                 <hr className="dotted-line" />
@@ -97,8 +103,10 @@ export default function Home() {
                 <div className="card-body">
                   <h5>NorthStar store</h5>
                   <p className="card-text p-f-s">
-                    Welcome to the NorthStar Fashion Store, a sleek and modern e-commerce platform designed to provide a seamless shopping experience. Built using the latest web technologies.
-                  </p>
+                    Welcome to NorthStar Fashion Store: A One-Stop Bizz Broker for the Modern
+                    Buyer Powered by the latest in web technology, this exquisite,
+                    user-friendly online store ensures a rewarding experience
+                    for customers from browsing to purchase.                  </p>
                 </div>
                 <hr className="dotted-line" />
                 <div className="card-viewer">
@@ -117,8 +125,10 @@ export default function Home() {
                 <div className="card-body">
                   <h5>NFT Hub</h5>
                   <p className="card-text p-f-s">
-                    NFT Hub, a cutting-edge platform designed for NFT enthusiasts to discover, buy, and sell digital assets effortlessly. This website combines a sleek design with advanced functionality to deliver an exceptional user experience.
-                  </p>
+                    Enter the NFT world of tomorrow, be part with our new and amazing platform for all that are into NFT.
+                    CapBids fuses cutting edge design with robust functionality
+                    to give you an experience like no other, whether your a
+                    buyer/seller/or just looking around!</p>
                 </div>
                 <hr className="dotted-line" />
                 <div className="card-viewer">
@@ -137,8 +147,10 @@ export default function Home() {
                 <div className="card-body">
                   <h5>Furniture store</h5>
                   <p className="card-text p-f-s">
-                    Your ultimate destination for stylish and affordable home furnishings.
-                    This e-commerce platform offers a shopping experience, making it easy for customers to find and purchase the perfect pieces for their homes.
+                    Discover an exciting world of affordable exotic home decor with this chic
+                    e-commerce site. We can buy the perfect products for
+                    our homes very quickly, with a site optimized for
+                    commerce that makes it pretty easy to find those right things to enhance your life.
                   </p>
                 </div>
                 <hr className="dotted-line" />
@@ -163,29 +175,29 @@ export default function Home() {
 
 
       <section>
-        <div class="works-hero about-hero container">
-          <div class="services pb-lg-4 pb-md-2 pb-sm-0 pb-0 mb-lg-2 mb-md-1 mb-sm-0 mb-0">
-            <div class="container">
-              <div class="row gap-md-0 gap-sm-4 gap-4">
-                <div class="col-lg-6 col-md-6" data-aos="fade-up">
-                  <h2 class="text-lg-start text-md-start text-sm-center text-center">YOUR DIGITAL VISION IS OUR MISSION</h2>
+        <div className="works-hero about-hero container">
+          <div className="services pb-lg-4 pb-md-2 pb-sm-0 pb-0 mb-lg-2 mb-md-1 mb-sm-0 mb-0">
+            <div className="container">
+              <div className="row gap-md-0 gap-sm-4 gap-4">
+                <div className="col-lg-6 col-md-6" data-aos="fade-up">
+                  <h2 className="text-lg-start text-md-start text-sm-center text-center">YOUR DIGITAL VISION IS OUR MISSION</h2>
                   <p
-                    class="text-lg-start text-md-start text-sm-center text-center mt-lg-4 mt-md-2 mt-sm-2 mt-2 pb-4 ">
+                    className="text-lg-start text-md-start text-sm-center text-center mt-lg-4 mt-md-2 mt-sm-2 mt-2 pb-4 ">
                     At MenhCoding, we turn digital dreams into reality. We specialize in web development, design, and tailored WordPress solutions, focusing on create beautiful websites and engaging user experiences</p>
-                  <p class="text-lg-start text-md-start text-sm-center text-center pb-4 ">
+                  <p className="text-lg-start text-md-start text-sm-center text-center pb-4 ">
                     Your identity is our priority, and we make it our responsibility to see to it that your
                     objectives are met to the letter and with vision.
                     Meet our specialized team ready to transform your idea into a strong online presence</p>
                   <div
-                    class="serives-btn justify-content-md-start justify-content-ms-center justify-content-center d-flex pt-lg-4 pt-md-2 pt-sm-2 pt-2">
-                    <a class="btn-hover1" href="#">Get In Touch</a>
+                    className="serives-btn justify-content-md-start justify-content-ms-center justify-content-center d-flex pt-lg-4 pt-md-2 pt-sm-2 pt-2">
+                    <a className="btn-hover1" href="#">Get In Touch</a>
 
                   </div>
                 </div>
-                <div class="col-lg-6 col-md-6 d-flex align-items-center justify-content-center abt" data-aos="fade-down">
-                  <div class="position-relative">
-                    <figure class="abut-hero-img1"><img src="assets/images/index/ba.jpg" width="90%" alt="img"/></figure>
-                    <figure class="abut-hero-img2"><img src="assets/images/icon/whitStar.png" alt="img"/></figure>
+                <div className="col-lg-6 col-md-6 d-flex align-items-center justify-content-center abt" data-aos="fade-down">
+                  <div className="position-relative">
+                    <figure className="abut-hero-img1"><img src="assets/images/index/ba.jpg" width="90%" alt="img" /></figure>
+                    <figure className="abut-hero-img2"><img src="assets/images/icon/whitStar.png" alt="img" /></figure>
                   </div>
                 </div>
               </div>
@@ -200,65 +212,65 @@ export default function Home() {
 ################################################################################################ */}
 
 
-      <section class="gateway">
-        <div class="container">
-          <div class="row gap-lg-0 gap-md-0 gap-sm-4 gap-4">
-            <div class="col-lg-6 col-md-6 d-flex align-items-center justify-content-center" data-aos="fade-up">
-              <div class="gateway-bg-img mt-5">
-                <figure><img src="assets/images/index/simple1.png" alt="gate_img1" class="moving" /></figure>
+      <section className="gateway">
+        <div className="container">
+          <div className="row gap-lg-0 gap-md-0 gap-sm-4 gap-4">
+            <div className="col-lg-6 col-md-6 d-flex align-items-center justify-content-center" data-aos="fade-up">
+              <div className="gateway-bg-img mt-5">
+                <figure><img src="assets/images/index/simple1.png" alt="gate_img1" className="moving" /></figure>
               </div>
             </div>
-            <div class="col-lg-6 col-md-6  text-md-start text-sm-center text-center" data-aos="fade-down">
-              <h2>SIMPLIFY YOUR PROJECT with MenhCoding  </h2>
-              {/* <p class="pt-lg-4 pt-md-3 pt-sm-2 pt-2">Lorem ipsum dolor sit amet consectetur adipisicing
+            <div className="col-lg-6 col-md-6  text-md-start text-sm-center text-center" data-aos="fade-down">
+              <h2>SIMPLIFY YOUR PROJECT WITH MenhCoding  </h2>
+              {/* <p className="pt-lg-4 pt-md-3 pt-sm-2 pt-2">Lorem ipsum dolor sit amet consectetur adipisicing
                 elit.
                 Perferendis iure eius autem
                 beatae
                 mollitia quasi, neque magni excepturi velit ullam sunt eos minima.</p> */}
               <div
-                class="gate mt-md-3 mt-sm-0 mt-4 d-flex flex-md-row flex-sm-column flex-column align-items-center">
-                <figure class="d-flex align-items-center"><img src="assets/images/index/one.png"
+                className="gate mt-md-3 mt-sm-0 mt-4 d-flex flex-md-row flex-sm-column flex-column align-items-center">
+                <figure className="d-flex align-items-center"><img src="assets/images/index/one.png"
                   alt="gate-img1" /></figure>
-                <div class="account-text ms-3">
-                  <h5 class="pb-2">Get Started</h5>
-                  <p class="p-f-s">Click "Get Started" to begin. You'll be taken to a page where you can
+                <div className="account-text ms-3">
+                  <h5 className="pb-2">Get Started</h5>
+                  <p className="p-f-s">Click "Get Started" to begin. You'll be taken to a page where you can
                     choose from our three service plans.</p>
                 </div>
               </div>
 
               <div
-                class="gate mt-md-3 mt-sm-0 mt-4   d-flex flex-md-row flex-sm-column flex-column align-items-center">
-                <figure class="d-flex align-items-center"><img src="assets/images/index/two.png"
+                className="gate mt-md-3 mt-sm-0 mt-4   d-flex flex-md-row flex-sm-column flex-column align-items-center">
+                <figure className="d-flex align-items-center"><img src="assets/images/index/two.png"
                   alt="gate-img2" /></figure>
-                <div class="account-text ms-3">
-                  <h5 class="pb-2">Select Your Plan</h5>
-                  <p class="p-f-s">Choose the plan that best fits your needs. Each plan is
+                <div className="account-text ms-3">
+                  <h5 className="pb-2">Select Your Plan</h5>
+                  <p className="p-f-s">Choose the plan that best fits your needs. Each plan is
                     designed to cater to different requirements.</p>
                 </div>
               </div>
 
-              <div class="gate d-flex mt-4  flex-md-row flex-sm-column flex-column align-items-center">
-                <figure class="d-flex align-items-center"><img src="assets/images/index/three.png"
+              <div className="gate d-flex mt-4  flex-md-row flex-sm-column flex-column align-items-center">
+                <figure className="d-flex align-items-center"><img src="assets/images/index/three.png"
                   alt="gate-img3" /></figure>
-                <div class="ms-3">
-                  <h5 class="pb-2">Fill Out the Form </h5>
-                  <p class="p-f-s">After selecting your plan, you'll be directed to a form.
+                <div className="ms-3">
+                  <h5 className="pb-2">Fill Out the Form </h5>
+                  <p className="p-f-s">After selecting your plan, you'll be directed to a form.
                     Fill in your details and any specific requirements.</p>
                 </div>
               </div>
 
-              <div class="gate d-flex mt-4  flex-md-row flex-sm-column flex-column align-items-center">
-                <figure class="d-flex align-items-center"><img src="assets/images/index/four.png"
+              <div className="gate d-flex mt-4  flex-md-row flex-sm-column flex-column align-items-center">
+                <figure className="d-flex align-items-center"><img src="assets/images/index/four.png"
                   alt="gate-img4" /></figure>
-                <div class="ms-3">
-                  <h5 class="pb-2">Submit Your Order</h5>
-                  <p class="p-f-s">Once you've completed the form, click "Submit." We'll receive your order instantly and send you a
+                <div className="ms-3">
+                  <h5 className="pb-2">Submit Your Order</h5>
+                  <p className="p-f-s">Once you've completed the form, click "Submit." We'll receive your order instantly and send you a
                     confirmation email. Expect a response from us shortly.</p>
                 </div>
               </div>
 
-              <div class="gate-link text-lg-start text-md-start text-sm-center text-center">
-                <a class="btn-hover1" href="#">Get Started</a>
+              <div className="gate-link text-lg-start text-md-start text-sm-center text-center">
+                <a className="btn-hover1" href="#">Get Started</a>
               </div>
             </div>
           </div>
@@ -273,18 +285,18 @@ export default function Home() {
 
 
       <section>
-        <div class="container about-banner" data-aos="zoom-in">
-          <div class="d-flex justify-content-lg-end justify-content-md-end justify-content-ms-center justify-content-center">
-            <div class="banner-text">
-              <h3 class="text-md-start text-sm-center text-center">Crafting Your Digital Presence
+        <div className="container about-banner" data-aos="zoom-in">
+          <div className="d-flex justify-content-lg-end justify-content-md-end justify-content-ms-center justify-content-center">
+            <div className="banner-text">
+              <h3 className="text-md-start text-sm-center text-center">Crafting Your Digital Presence
               </h3>
-              <p class="text-md-start text-sm-center text-center p-f-s">
+              <p className="text-md-start text-sm-center text-center p-f-s">
                 Meet our web development services that will transform your ideas into an actuality.
                 MenhCoding is where internet designs are appealing and effective,
                 giving your brand the online tool it needs to persuade.
               </p>
-              <div class="visa-btn text-sm-center text-md-start text-center">
-                <a class="btn-hover1" href="#">Get In Touch</a>
+              <div className="visa-btn text-sm-center text-md-start text-center">
+                <a className="btn-hover1" href="#">Get In Touch</a>
               </div>
             </div>
           </div>
@@ -298,50 +310,48 @@ export default function Home() {
 
 
 
-      <section class="round-word">
-        <div class="container">
-          <div class="row gap-lg-0 gap-md-0 gap-sm-4 gap-4">
-            <div class="col-lg-6 col-md-6 d-flex align-items-lg-start align-items-md-start align-items-ms-center align-items-center justify-content-center flex-column" data-aos="fade-up">
-              <h2 class="text-lg-start text-md-start text-sm-center text-center">IMPACTING LIVES GLOBALLY</h2>
-              <p class="text-lg-start text-md-start text-sm-center text-center">Discover the projects we've successfully completed, delivering satisfaction to our clients worldwide.</p>
-              <div class="d-flex gap-3">
-                <div class="sticker">
-                  <div class="d-flex">
-                    <h3 class="count">50</h3>
+      <section className="round-word">
+        <div className="container">
+          <div className="row gap-lg-0 gap-md-0 gap-sm-4 gap-4">
+            <div className="col-lg-6 col-md-6 d-flex align-items-lg-start align-items-md-start align-items-ms-center align-items-center justify-content-center flex-column" data-aos="fade-up">
+              <h2 className="text-lg-start text-md-start text-sm-center text-center">IMPACTING LIVES GLOBALLY</h2>
+              <p className="text-lg-start text-md-start text-sm-center text-center">Discover the projects we've successfully completed, delivering satisfaction to our clients worldwide.</p>
+              <div className="d-flex gap-3">
+                <div className="sticker">
+                  <div className="d-flex">
+                    <h3 className="count">50</h3>
                     <h3>+</h3>
                   </div> <span>Projects Delivered</span>
                 </div>
-                <div class="sticker st-bg">
-                  <div class="d-flex">
-                    <h3 class="count">100</h3>
+                <div className="sticker st-bg">
+                  <div className="d-flex">
+                    <h3 className="count">100</h3>
                     <h3>+</h3>
                   </div> <span>Happy Clients</span>
                 </div>
               </div>
-              <div class="d-flex gap-3">
-                <div class="sticker st-bg">
-                  <div class="d-flex">
-                    <h3 class="count">95</h3>
+              <div className="d-flex gap-3">
+                <div className="sticker st-bg">
+                  <div className="d-flex">
+                    <h3 className="count">95</h3>
                     <h3>%</h3>
                   </div> <span>Client Satisfaction Rate</span>
                 </div>
-                <div class="sticker">
-                  <div class="d-flex">
-                    <h3 class="count">100</h3>
+                <div className="sticker">
+                  <div className="d-flex">
+                    <h3 className="count">100</h3>
                     <h3>K+</h3>
                   </div> <span>Active Users</span>
                 </div>
               </div>
 
             </div>
-            <div class="col-lg-6 col-md-6 d-flex align-items-center justify-content-center" data-aos="fade-down">
-              <figure><img src="assets/images/about/round-word.png" alt="img" /></figure>
+            <div className="col-lg-6 col-md-6 d-flex align-items-center justify-content-center" data-aos="fade-down">
+              <figure><img src="assets/images/index/word3.png" alt="img" /></figure>
             </div>
           </div>
         </div>
       </section>
-
-
 
 
 
@@ -385,14 +395,14 @@ export default function Home() {
                 <a href="#"> <i className="fa-brands fa-twitter"></i></a>
                 <a href="#"> <i className="fa-brands fa-instagram"></i></a>
               </div>
-             
+
             </div>
-            <div class="Copyright d-flex justify-content-center align-items-center text-center w-100">
-    <p class="mb-0">Copyright © 2024 MenhCoding All Right Reserved.</p>
-</div>
+            <div className="Copyright d-flex justify-content-center align-items-center text-center w-100">
+              <p className="mb-0">Copyright © 2024 MenhCoding All Right Reserved.</p>
+            </div>
 
           </div>
-          <hr/>
+          <hr />
 
         </footer>
       </div>
