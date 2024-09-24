@@ -31,9 +31,9 @@ export default function Navbar() {
                                 <li className="nav-item">
                                     <a className="nav-link" href="/services">Services</a>
                                 </li>
-                                <li className="nav-item">
+                                {/* <li className="nav-item">
                                     <a className="nav-link" href="/blog">Blog</a>
-                                </li>
+                                </li> */}
                                 <li className="nav-item">
                                     <a className="nav-link" href="/contactus">Contact us</a>
                                 </li>
