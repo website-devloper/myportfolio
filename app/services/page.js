@@ -143,23 +143,34 @@ export default function Home() {
 
 
 
-      <section className="plans__container " >
+      <section className="plans__container">
         <div className="plans">
           <div className="plansHero">
-            <h1 className="plansHero__title"> Making Digital Experiences One Package at a Time</h1>
+            <h1 className="plansHero__title">Making Digital Experiences One Package at a Time</h1>
             <p className="plansHero__subtitle">Pick the plan that is right for you and turn your vision into reality.</p>
           </div>
           <div className="planItem__container" data-aos="fade-up">
 
-            <div className="planItem  basic planItem--free">
+            {/* Basic Plan */}
+            <div className="planItem basic planItem--free">
               <div className="card1">
                 <div className="card__header">
-                  <FontAwesomeIcon icon={RegularLightbulb} size="2x" />
+                  {/* <FontAwesomeIcon icon={RegularLightbulb} size="2x" /> */}
+                  <div><img src='assets/images/index/lightbulb.png' width="32px"/></div>
+
                   <h2>Basic</h2>
                 </div>
                 <div className="card__desc">Perfect for small businesses seeking a quick, affordable online presence</div>
               </div>
-              <p class="price">$399 </p>
+
+              <div className="price-container">
+                <div className="price-details">
+                  <div className="discount-label">
+                    <span className="old-price">$399</span> - $100 OFF
+                  </div>
+                  <p className="discount-price">$299</p>
+                </div>
+              </div>
               <ul className="featureList">
                 <li><FontAwesomeIcon icon={faCheck} style={{ color: "#EA4C89", fontSize: "20px" }} /> Up to 4 custom-designed pages</li>
                 <li><FontAwesomeIcon icon={faCheck} style={{ color: "#EA4C89", fontSize: "20px" }} /> Mobile-optimized responsive design</li>
@@ -176,17 +187,26 @@ export default function Home() {
               <button className="button">Get Started</button>
             </div>
 
-            <div className="planItem  business highlight planItem--pro" >
+            {/* Business Plan */}
+            <div className="planItem business highlight planItem--pro">
               <div className="card1">
                 <div className="card__header">
-                  <div><img src="assets/images/index/chart.png" width="30px" /></div>
+                  <div><img src="assets/images/index/chartg2.png" width="32px" /></div>
                   <h2>Business</h2>
                   <div className="card__label label">Best Value</div>
                 </div>
                 <div className="card__desc">Designed for growing businesses that require more features and scalability</div>
               </div>
-              <p class="price">$699 </p>   
-                       <ul className="featureList">
+
+              <div className="price-container">
+                <div className="price-details">
+                  <div className="discount-label">
+                    <span className="old-price">$699</span> - $250 OFF
+                  </div>
+                  <p className="discount-price">$449</p>
+                </div>
+              </div>
+              <ul className="featureList">
                 <li><FontAwesomeIcon icon={faCheck} style={{ color: "#EA4C89", fontSize: "20px" }} /> Up to 10 custom-designed pages</li>
                 <li><FontAwesomeIcon icon={faCheck} style={{ color: "#EA4C89", fontSize: "20px" }} /> Fully mobile-responsive design</li>
                 <li><FontAwesomeIcon icon={faCheck} style={{ color: "#EA4C89", fontSize: "20px" }} /> Advanced SEO setup and optimization</li>
@@ -202,16 +222,25 @@ export default function Home() {
               <button className="button button--pink">Get Started</button>
             </div>
 
-            <div className="planItem enterprise planItem--entp ">
+            {/* Enterprise Plan */}
+            <div className="planItem enterprise planItem--entp">
               <div className="card2">
                 <div className="card__header">
-                  <div><img src="assets/images/index/globe.png" width="30px" /></div>
-
+                  <div><img src="assets/images/index/entreprise.png" width="32px" /></div>
                   <h2>Enterprise</h2>
                 </div>
                 <div className="card__desc1">For companies needing advanced customization and business-focused solutions</div>
               </div>
-              <div className="price">Let's Talk</div>
+
+              <div className="price-container">
+                <div className="price-details">
+                  <div className="discount-label">
+                    <span className="old-price1">$999</span> - $350 OFF
+                  </div>
+                  <p className="discount-price1">$649</p>
+                </div>
+              </div>
+
               <ul className="featureList">
                 <li><FontAwesomeIcon icon={faCheck} style={{ color: "#fff", fontSize: "20px" }} /> Unlimited custom pages</li>
                 <li><FontAwesomeIcon icon={faCheck} style={{ color: "#fff", fontSize: "20px" }} /> Full CMS customization (WordPress)</li>
@@ -226,15 +255,15 @@ export default function Home() {
               </ul>
               <button className="button button--white">Get Started</button>
             </div>
-
           </div>
         </div>
       </section>
 
 
-{/* ########################################################################### */}
 
-<section className="gateway1">
+      {/* ########################################################################### */}
+
+      <section className="gateway1">
         <div className="container">
           <div className="row gap-lg-0 gap-md-0 gap-sm-4 gap-4">
             <div className="col-lg-6 col-md-6 d-flex align-items-center justify-content-center" data-aos="fade-up">
