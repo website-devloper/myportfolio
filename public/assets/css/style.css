@@ -4426,3 +4426,13 @@ footer ul li a:hover {
     margin-left: 60px;   
     margin-top:5px ;         
 }
+.video {
+    cursor: pointer;
+    border-radius: 50px; /* Add rounded corners */
+    overflow: hidden; /* Ensures video corners are rounded */
+  }
+  
+  .feature-img {
+    border-radius: 30px; /* Ensures the video container also has rounded corners */
+    overflow: hidden; /* Prevents any overflow to maintain the radius */
+  }

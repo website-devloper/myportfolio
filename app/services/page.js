@@ -3,17 +3,15 @@
 import { useEffect } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import Slider from "react-slick";
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import { useRef, useState } from "react";
 
 
-// Import FontAwesome icons
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck, faXmark } from '@fortawesome/free-solid-svg-icons';
 
-import { faLightbulb as RegularLightbulb } from '@fortawesome/free-regular-svg-icons';
-import { faGlobe as SolidGlobe } from '@fortawesome/free-solid-svg-icons';
+
 
 export default function Home() {
   const settings = {
@@ -59,32 +57,75 @@ export default function Home() {
 
 
 
+
+
+
+
+  const videoRef = useRef(null); // Reference to the video element
+  const [isPlaying, setIsPlaying] = useState(true); // Video state (autoplay by default)
+
+  const handlePlayPause = () => {
+    const video = videoRef.current;
+
+    if (video.paused) {
+      video.play();
+      setIsPlaying(true);
+    } else {
+      video.pause();
+      setIsPlaying(false);
+    }
+  };
+
+  // Automatically hide the play button initially when the video is playing
+  useEffect(() => {
+    if (isPlaying) {
+      videoRef.current.play();
+    }
+  }, []);
+
+
+
   return (
     <main className="site-wrapper">
-
-
-
-
-
 
       <section class="feature-hero" data-aos="zoom-in">
         <div class="container">
           <h1 class="text-center">Our Services</h1>
           <p class="text-center">Specific Technologies Specially Developed to Help You Succeed</p>
           <div class="position-relative">
-            <div class="featur-video">
-              <a class="video-play-button" href="#">
-                <span class="fa-solid fa-play"></span>
-              </a>
 
+            <div class="featur-video">
+              {!isPlaying && (
+                <a class="video-play-button" onClick={handlePlayPause}>
+                  <span className="fa-solid fa-play"></span>
+                </a>
+              )}
             </div>
-            <figure class="feature-img"><img src="assets/images/feauter/feature-girl.png" alt="img" />
+            <figure className="feature-img">
+              <video
+                ref={videoRef}
+                width="100%"
+                height="50%"
+                autoPlay
+                loop
+                muted
+                playsInline
+                onClick={handlePlayPause}
+                className="video">
+                <source src="/assets/images/index/services-vid.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
             </figure>
-            <figure class="feature-img2"><img src="assets/images/feauter/feature-rect.png" alt="img" />
+
+            <figure class="feature-img2">
+              <img src="assets/images/feauter/feature-rect.png" alt="img" />
             </figure>
           </div>
         </div>
       </section>
+
+
+
 
 
 
@@ -156,7 +197,7 @@ export default function Home() {
               <div className="card1">
                 <div className="card__header">
                   {/* <FontAwesomeIcon icon={RegularLightbulb} size="2x" /> */}
-                  <div><img src='assets/images/index/lightbulb.png' width="32px"/></div>
+                  <div><img src='assets/images/index/lightbulb.png' width="32px" /></div>
 
                   <h2>Basic</h2>
                 </div>
