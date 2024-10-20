@@ -4,10 +4,10 @@ import nodemailer from 'nodemailer';
 
 
 
-// const CLIENT_ID = process.env.CLIENT_ID;
-// const CLIENT_SECRET = process.env.CLIENT_SECRET;
-// const REFRESH_TOKEN = process.env.REFRESH_TOKEN;
-// const MY_EMAIL = process.env.MY_EMAIL;
+const CLIENT_ID = process.env.CLIENT_ID;
+const CLIENT_SECRET = process.env.CLIENT_SECRET;
+const REFRESH_TOKEN = process.env.REFRESH_TOKEN;
+const MY_EMAIL = process.env.MY_EMAIL;
 
 
 const oAuth2Client = new google.auth.OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI);
