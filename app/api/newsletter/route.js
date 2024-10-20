@@ -3,13 +3,11 @@ import { google } from 'googleapis';
 import nodemailer from 'nodemailer';
 
 
-
-const CLIENT_ID ="CLIENT_ID";
-const CLIENT_SECRET = "CLIENT_SECRET";
-const REFRESH_TOKEN = "REFRESH_TOKEN"
-const REDIRECT_URI = "REDIRECT_URI"
-const MY_EMAIL = "MY_EMAIL"
-
+const CLIENT_ID = process.env.CLIENT_ID;
+const CLIENT_SECRET = process.env.CLIENT_SECRET;
+const REFRESH_TOKEN = process.env.REFRESH_TOKEN;
+const REDIRECT_URI = process.env.REDIRECT_URI;
+const MY_EMAIL = process.env.MY_EMAIL;
 
 const oAuth2Client = new google.auth.OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI);
 oAuth2Client.setCredentials({ refresh_token: REFRESH_TOKEN });
@@ -27,11 +25,11 @@ export async function POST(req) {
       return new Response(JSON.stringify({ message: 'Missing required fields' }), { status: 400 });
     }
 
-   
-      const db = await createConnection();
-      const sql = "INSERT INTO newsletter ( email_adress) VALUES (?)";
-      const value = [email];
-      await db.query(sql, value);
+
+    const db = await createConnection();
+    const sql = "INSERT INTO newsletter ( email_adress) VALUES (?)";
+    const value = [email];
+    await db.query(sql, value);
 
 
     const transport = nodemailer.createTransport({
