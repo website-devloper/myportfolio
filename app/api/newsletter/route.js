@@ -3,14 +3,14 @@ import { google } from 'googleapis';
 import nodemailer from 'nodemailer';
 
 
-const CLIENT_ID = process.env.CLIENT_ID;
-const CLIENT_SECRET = process.env.CLIENT_SECRET;
-const REFRESH_TOKEN = process.env.REFRESH_TOKEN;
+const CLIENTI = process.env.CLIENT_ID;
+const CLIENTS = process.env.CLIENT_SECRET;
+const REFRESHT = process.env.REFRESH_TOKEN;
 const REDIRECT_URI = process.env.REDIRECT_URI;
 const MY_EMAIL = process.env.MY_EMAIL;
 
-const oAuth2Client = new google.auth.OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI);
-oAuth2Client.setCredentials({ refresh_token: REFRESH_TOKEN });
+const oAuth2Client = new google.auth.OAuth2(CLIENTS, CLIENTI, REDIRECT_URI);
+oAuth2Client.setCredentials({ refresh_token: REFRESHT });
 
 
 
