@@ -1,14 +1,21 @@
 "use client";
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import Slider from "react-slick";
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import Link from 'next/link';
 
 export default function Home() {
+  const [showBackToTop, setShowBackToTop] = useState(false);
+  const [email, setEmail] = useState('');
+  const [message, setMessage] = useState('');
+
+
   const settings = {
     infinite: true,
     speed: 500,
@@ -51,18 +58,66 @@ export default function Home() {
   }, []);
 
 
+  useEffect(() => {
+    // Ensure this runs only on the client side
+    const handleScroll = () => {
+      if (window.scrollY > 100) {
+        setShowBackToTop(true);
+      } else {
+        setShowBackToTop(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    // Cleanup the event listener on component unmount
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
+
+  const handleNewletterSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const res = await fetch('/api/newsletter', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email }),
+      });
+
+      const data = await res.json();
+
+      if (res.ok) {
+        toast.success('Successfully subscribed to the newsletter!');
+        setEmail(''); // Clear the input after success
+        e.target.reset();
+      } else {
+        toast.error('Something went wrong');
+      }
+    } catch (error) {
+      toast.error('An error occurred. Please try again later.');
+    }
+  };
 
   return (
     <main className="site-wrapper">
-
-      {/* //////////////////////////////////////////// */}
-
       <section >
+        <ToastContainer />
         <div className="about-hero container">
           <div className="spotlight-container1">
             <div className="spotlight1"></div>
             <h1 className=" text-center">Our Work</h1>
-
           </div>
           <p className="text-center about-p">Here is a Handful of our Projects that are Among the Greatest that Confirm our commitment to introducing visually impacting Web Solutions</p>
         </div>
@@ -71,6 +126,8 @@ export default function Home() {
       {/* ###########################################################################################
 ###########################################################################################
 ################################################################################################ */}
+
+
       <section className="news-cards">
         <div className="container">
           <div className="row d-flex justify-content-between gap-0">
@@ -180,24 +237,27 @@ export default function Home() {
             <div className="container">
               <div className="row gap-md-0 gap-sm-4 gap-4">
                 <div className="col-lg-6 col-md-6" data-aos="fade-up">
-                  <h2 className="text-lg-start text-md-start text-sm-center text-center">YOUR DIGITAL VISION IS OUR MISSION</h2>
-                  <p
-                    className="text-lg-start text-md-start text-sm-center text-center mt-lg-4 mt-md-2 mt-sm-2 mt-2 pb-4 ">
-                    At MenhCoding, we turn digital dreams into reality. We specialize in web development, design, and tailored WordPress solutions, focusing on create beautiful websites and engaging user experiences</p>
-                  <p className="text-lg-start text-md-start text-sm-center text-center pb-4 ">
-                    Your identity is our priority, and we make it our responsibility to see to it that your
-                    objectives are met to the letter and with vision.
-                    Meet our specialized team ready to transform your idea into a strong online presence</p>
-                  <div
-                    className="serives-btn justify-content-md-start justify-content-ms-center justify-content-center d-flex pt-lg-4 pt-md-2 pt-sm-2 pt-2">
-                    <a className="btn-hover1" href="#">Get In Touch</a>
-
+                  <h2 className="text-start custom-h2">
+                    YOUR DIGITAL VISION IS OUR MISSION
+                  </h2>
+                  <p className="text-start mt-lg-4 mt-md-2 mt-sm-2 mt-2 pb-4 custom-p">
+                    At MenhCoding, we turn digital dreams into reality. We specialize in web development, design, and tailored WordPress solutions, focusing on creating beautiful websites and engaging user experiences.
+                  </p>
+                  <p className="text-start pb-4 custom-p">
+                    Your identity is our priority, and we make it our responsibility to see to it that your objectives are met to the letter and with vision. Meet our specialized team ready to transform your idea into a strong online presence.
+                  </p>
+                  <div className="services-btn d-flex justify-content-start pt-lg-4 pt-md-2 pt-sm-2 pt-2">
+                    <a className="btn-hover1" href="/services#package-pricing">Get In Touch</a>
                   </div>
                 </div>
                 <div className="col-lg-6 col-md-6 d-flex align-items-center justify-content-center abt" data-aos="fade-down">
                   <div className="position-relative">
-                    <figure className="abut-hero-img1"><img src="assets/images/index/ba.jpg" width="90%" alt="img" /></figure>
-                    <figure className="abut-hero-img2"><img src="assets/images/icon/whitStar.png" alt="img" /></figure>
+                    <figure className="abut-hero-img1">
+                      <img src="assets/images/index/ba.jpg" width="90%" alt="img" />
+                    </figure>
+                    <figure className="abut-hero-img2">
+                      <img src="assets/images/icon/whitStar.png" alt="img" />
+                    </figure>
                   </div>
                 </div>
               </div>
@@ -221,15 +281,10 @@ export default function Home() {
               </div>
             </div>
             <div className="col-lg-6 col-md-6  text-md-start text-sm-center text-center" data-aos="fade-down">
-              <h2>SIMPLIFY YOUR PROJECT WITH MenhCoding  </h2>
-              {/* <p className="pt-lg-4 pt-md-3 pt-sm-2 pt-2">Lorem ipsum dolor sit amet consectetur adipisicing
-                elit.
-                Perferendis iure eius autem
-                beatae
-                mollitia quasi, neque magni excepturi velit ullam sunt eos minima.</p> */}
-              <div
-                className="gate mt-md-3 mt-sm-0 mt-4 d-flex flex-md-row flex-sm-column flex-column align-items-center">
-                <figure className="d-flex align-items-center"><img src="assets/images/index/one.png"
+              <h2>SIMPLIFY YOUR PROJECT WITH MenhCoding</h2>
+           
+              <div className="gate mt-md-3 mt-sm-0 mt-4 d-flex flex-md-row flex-sm-column flex-column align-items-center">
+                <figure className="d-flex "><img src="assets/images/index/one.png"
                   alt="gate-img1" /></figure>
                 <div className="account-text ms-3">
                   <h5 className="pb-2">Get Started</h5>
@@ -238,9 +293,8 @@ export default function Home() {
                 </div>
               </div>
 
-              <div
-                className="gate mt-md-3 mt-sm-0 mt-4   d-flex flex-md-row flex-sm-column flex-column align-items-center">
-                <figure className="d-flex align-items-center"><img src="assets/images/index/two.png"
+              <div className="gate mt-md-3 mt-sm-0 mt-4   d-flex flex-md-row flex-sm-column flex-column align-items-center">
+                <figure className="d-flex "><img src="assets/images/index/two.png"
                   alt="gate-img2" /></figure>
                 <div className="account-text ms-3">
                   <h5 className="pb-2">Select Your Plan</h5>
@@ -250,9 +304,9 @@ export default function Home() {
               </div>
 
               <div className="gate d-flex mt-4  flex-md-row flex-sm-column flex-column align-items-center">
-                <figure className="d-flex align-items-center"><img src="assets/images/index/three.png"
+                <figure className="d-flex "><img src="assets/images/index/three.png"
                   alt="gate-img3" /></figure>
-                <div className="ms-3">
+                <div className=" account-text ms-3">
                   <h5 className="pb-2">Fill Out the Form </h5>
                   <p className="p-f-s">After selecting your plan, you'll be directed to a form.
                     Fill in your details and any specific requirements.</p>
@@ -260,9 +314,9 @@ export default function Home() {
               </div>
 
               <div className="gate d-flex mt-4  flex-md-row flex-sm-column flex-column align-items-center">
-                <figure className="d-flex align-items-center"><img src="assets/images/index/four.png"
+                <figure className="d-flex"><img src="assets/images/index/four.png"
                   alt="gate-img4" /></figure>
-                <div className="ms-3">
+                <div className="account-text ms-3">
                   <h5 className="pb-2">Submit Your Order</h5>
                   <p className="p-f-s">Once you've completed the form, click "Submit." We'll receive your order instantly and send you a
                     confirmation email. Expect a response from us shortly.</p>
@@ -270,7 +324,7 @@ export default function Home() {
               </div>
 
               <div className="gate-link text-lg-start text-md-start text-sm-center text-center">
-                <a className="btn-hover1" href="#">Get Started</a>
+                <Link className="btn-hover1" href="/services#package-pricing">Get Started</Link>
               </div>
             </div>
           </div>
@@ -288,15 +342,14 @@ export default function Home() {
         <div className="container about-banner" data-aos="zoom-in">
           <div className="d-flex justify-content-lg-end justify-content-md-end justify-content-ms-center justify-content-center">
             <div className="banner-text">
-              <h3 className="text-md-start text-sm-center text-center">Crafting Your Digital Presence
-              </h3>
+              <h3 className="text-md-start text-sm-center text-center">Crafting Your Digital Presence</h3>
               <p className="text-md-start text-sm-center text-center p-f-s">
                 Meet our web development services that will transform your ideas into an actuality.
                 MenhCoding is where internet designs are appealing and effective,
                 giving your brand the online tool it needs to persuade.
               </p>
               <div className="visa-btn text-sm-center text-md-start text-center">
-                <a className="btn-hover1" href="#">Get In Touch</a>
+                <a className="btn-hover1" href="/services#package-pricing">Get In Touch</a>
               </div>
             </div>
           </div>
@@ -355,18 +408,27 @@ export default function Home() {
 
 
 
-      <div className=" footer container">
+      <div className="footer container">
         <footer className="position-relative">
 
           <h4 className="text-center">SUBSCRIBE OUR NEWSLETTER</h4>
-          <p className="text-center pt-2 pb-3">Get latest News and Updates</p>
-          <form className="d-flex align-items-center justify-content-center" id="footer-sub2">
-            <div id="Succes-box2"></div>
-            <div className="d-flex footer-search ">
-              <input type="email" name="search" placeholder="Enter your Email" required />
+          <p className="text-center latest pt-2 pb-3">Get latest News and Updates</p>
+
+          <form className="d-flex align-items-center justify-content-center" id="footer-sub2" onSubmit={handleNewletterSubmit}>
+            <div id="Succes-box2">{message && <p>{message}</p>}</div>
+            <div className="d-flex footer-search">
+              <input
+                type="email"
+                name="email"
+                placeholder="Enter your Email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+              />
               <button type="submit" className="btn-hover1">Subscribe</button>
             </div>
           </form>
+
           <div className="footer-logo text-center pb-lg-4 pb-md-3 pb-sm-2 pb-4">
             <a href="index.html">
               {/* <figure><img src="assets/images/Logo.png" alt="img" /></figure> */}
@@ -374,16 +436,17 @@ export default function Home() {
           </div>
           <ul className="d-flex align-items-center justify-content-center">
             <li>
-              <a href="#">Feature</a>
+              <a href="/">Home</a>
             </li>
             <li>
-              <a href="#">Pricing</a>
+              <a href="/services#package-pricing">Pricing</a>
+            </li>
+            
+            <li>
+              <a href="/services">Services</a>
             </li>
             <li>
-              <a href="#">About us</a>
-            </li>
-            <li>
-              <a href="#">Faq</a>
+              <a href="contactus">Contact Us</a>
             </li>
           </ul>
           <hr />
@@ -406,7 +469,26 @@ export default function Home() {
 
         </footer>
       </div>
-      <button onClick="scrollToTop()" id="backToTopBtn"><i className="fa-solid fa-arrow-turn-up"></i></button>
+      {showBackToTop && (
+        <button
+          onClick={scrollToTop}
+          id="backToTopBtn"
+          style={{
+            position: "fixed",
+            bottom: "30px",
+            right: "30px",
+            backgroundColor: "#000",
+            color: "#fff",
+            paddingTop: "10px",
+            paddingBottom: "10px",
+            border: "none",
+            cursor: "pointer",
+            zIndex: 1000,
+            display: showBackToTop ? "block" : "none",
+          }}
+        >
+          <i className="fa-solid fa-arrow-turn-up"></i>
+        </button>)}
     </main>
   );
 }

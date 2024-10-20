@@ -6,14 +6,20 @@ import 'aos/dist/aos.css';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { useRef, useState } from "react";
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck, faXmark } from '@fortawesome/free-solid-svg-icons';
+import Link from 'next/link';
 
 
 
 export default function Home() {
+  const [showBackToTop, setShowBackToTop] = useState(false);
+  const [email, setEmail] = useState('');
+  const [message, setMessage] = useState('');
+
   const settings = {
     infinite: true,
     speed: 500,
@@ -58,8 +64,31 @@ export default function Home() {
 
 
 
+  const handleNewletterSubmit = async (e) => {
+    e.preventDefault();
 
+    try {
+      const res = await fetch('/api/newsletter', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email }),
+      });
 
+      const data = await res.json();
+
+      if (res.ok) {
+        toast.success('Successfully subscribed to the newsletter!');
+        setEmail(''); // Clear the input after success
+        e.target.reset();
+      } else {
+        toast.error('Something went wrong');
+      }
+    } catch (error) {
+      toast.error('An error occurred. Please try again later.');
+    }
+  };
 
   const videoRef = useRef(null); // Reference to the video element
   const [isPlaying, setIsPlaying] = useState(true); // Video state (autoplay by default)
@@ -85,18 +114,62 @@ export default function Home() {
 
 
 
+
+
+
+  useEffect(() => {
+    // Ensure this runs only on the client side
+    const handleScroll = () => {
+      if (window.scrollY > 100) {
+        setShowBackToTop(true);
+      } else {
+        setShowBackToTop(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    // Cleanup the event listener on component unmount
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
+  const pricingSectionRef = useRef(null);
+
+  useEffect(() => {
+    const hash = window.location.hash;
+    if (hash === '#package-pricing') {
+      pricingSectionRef.current?.scrollIntoView({
+        behavior: 'smooth',
+      });
+    }
+  }, []);
+
+
+
+
+
+
   return (
     <main className="site-wrapper">
+      <ToastContainer />
 
-      <section class="feature-hero" data-aos="zoom-in">
-        <div class="container">
-          <h1 class="text-center">Our Services</h1>
-          <p class="text-center">Specific Technologies Specially Developed to Help You Succeed</p>
-          <div class="position-relative">
-
-            <div class="featur-video">
+      <section className="feature-hero" data-aos="zoom-in">
+        <div className="container">
+          <h1 className="text-center">Our Services</h1>
+          <p className="text-center">Specific Technologies Specially Developed to Help You Succeed</p>
+          <div className="position-relative">
+            <div className="featur-video">
               {!isPlaying && (
-                <a class="video-play-button" onClick={handlePlayPause}>
+                <a className="video-play-button" onClick={handlePlayPause}>
                   <span className="fa-solid fa-play"></span>
                 </a>
               )}
@@ -117,7 +190,7 @@ export default function Home() {
               </video>
             </figure>
 
-            <figure class="feature-img2">
+            <figure className="feature-img2">
               <img src="assets/images/feauter/feature-rect.png" alt="img" />
             </figure>
           </div>
@@ -139,8 +212,6 @@ export default function Home() {
 
       <section className="core2">
         <div className="container">
-          {/* <h2 className="text-center">OUR SERVICES</h2>
-          <p className="core-p">Specific Technologies Specially Developed to Help You Succeed</p> */}
           <div className="row d-flex gap-md-0 gap-sm-5 gap-5">
             <div className="col-lg-4 col-md-4 d-flex flex-column gap-3 justify-content-center" data-aos="fade-up">
               <div className="core-card">
@@ -184,7 +255,7 @@ export default function Home() {
 
 
 
-      <section className="plans__container">
+      <section className="plans__container" id="package-pricing" ref={pricingSectionRef}>
         <div className="plans">
           <div className="plansHero">
             <h1 className="plansHero__title">Making Digital Experiences One Package at a Time</h1>
@@ -195,6 +266,7 @@ export default function Home() {
             {/* Basic Plan */}
             <div className="planItem basic planItem--free">
               <div className="card1">
+
                 <div className="card__header">
                   {/* <FontAwesomeIcon icon={RegularLightbulb} size="2x" /> */}
                   <div><img src='assets/images/index/lightbulb.png' width="32px" /></div>
@@ -225,7 +297,10 @@ export default function Home() {
                 <li className="disabled"><FontAwesomeIcon icon={faXmark} style={{ color: "#b1b8c9", fontSize: "20px" }} /> Custom API integrations</li>
                 <li className="disabled"><FontAwesomeIcon icon={faXmark} style={{ color: "#b1b8c9", fontSize: "20px" }} /> Advanced SEO optimization</li>
               </ul>
-              <button className="button">Get Started</button>
+
+              <Link href={{ pathname: '/contactus', query: { package: 'basic' } }} className='pricing-button'>
+                <button className="button">Get Started</button>
+              </Link>
             </div>
 
             {/* Business Plan */}
@@ -260,7 +335,11 @@ export default function Home() {
                 <li className="disabled"><FontAwesomeIcon icon={faXmark} style={{ color: "#b1b8c9", fontSize: "20px" }} /> Advanced e-commerce (over 50 products)</li>
                 <li className="disabled"><FontAwesomeIcon icon={faXmark} style={{ color: "#b1b8c9", fontSize: "20px" }} /> Full custom web applications</li>
               </ul>
-              <button className="button button--pink">Get Started</button>
+
+              <Link href={{ pathname: '/contactus', query: { package: 'business' } }} className='pricing-button'>
+                <button className="button button--pink">Get Started</button>
+              </Link>
+
             </div>
 
             {/* Enterprise Plan */}
@@ -294,7 +373,11 @@ export default function Home() {
                 <li><FontAwesomeIcon icon={faCheck} style={{ color: "#fff", fontSize: "20px" }} /> Custom business tools & dashboards</li>
                 <li className="disabled"><FontAwesomeIcon icon={faXmark} style={{ color: "#b1b8c9", fontSize: "20px" }} /> Social media management (offered separately)</li>
               </ul>
-              <button className="button button--white">Get Started</button>
+
+              <Link href={{ pathname: '/contactus', query: { package: 'enterprise' } }} className='pricing-button'>
+                <button className="button button--white">Get Started</button>
+              </Link>
+
             </div>
           </div>
         </div>
@@ -312,7 +395,7 @@ export default function Home() {
                 <figure><img src="assets/images/index/simple1.png" alt="gate_img1" className="moving" /></figure>
               </div>
             </div>
-            <div className="col-lg-6 col-md-6  text-md-start text-sm-center text-center" data-aos="fade-down">
+            <div className="col-lg-6 col-md-6 text-md-start text-sm-center text-center" data-aos="fade-down">
               <h2>SIMPLIFY YOUR PROJECT WITH MenhCoding  </h2>
               {/* <p className="pt-lg-4 pt-md-3 pt-sm-2 pt-2">Lorem ipsum dolor sit amet consectetur adipisicing
                 elit.
@@ -362,7 +445,7 @@ export default function Home() {
               </div>
 
               <div className="gate-link text-lg-start text-md-start text-sm-center text-center">
-                <a className="btn-hover1" href="#">Get Started</a>
+                <a className="btn-hover1" href="/services#package-pricing">Get Started</a>
               </div>
             </div>
           </div>
@@ -388,7 +471,7 @@ export default function Home() {
                 giving your brand the online tool it needs to persuade.
               </p>
               <div className="visa-btn text-sm-center text-md-start text-center">
-                <a className="btn-hover1" href="#">Get In Touch</a>
+                <a className="btn-hover1" href="/services#package-pricing">Get In Touch</a>
               </div>
             </div>
           </div>
@@ -451,11 +534,18 @@ export default function Home() {
         <footer className="position-relative">
 
           <h4 className="text-center">SUBSCRIBE OUR NEWSLETTER</h4>
-          <p className="text-center pt-2 pb-3">Get latest News and Updates</p>
-          <form className="d-flex align-items-center justify-content-center" id="footer-sub2">
-            <div id="Succes-box2"></div>
-            <div className="d-flex footer-search ">
-              <input type="email" name="search" placeholder="Enter your Email" required />
+          <p className="text-center latest pt-2 pb-3">Get latest News and Updates</p>
+          <form className="d-flex align-items-center justify-content-center" id="footer-sub2" onSubmit={handleNewletterSubmit}>
+            <div id="Succes-box2">{message && <p>{message}</p>}</div>
+            <div className="d-flex footer-search">
+              <input
+                type="email"
+                name="email"
+                placeholder="Enter your Email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+              />
               <button type="submit" className="btn-hover1">Subscribe</button>
             </div>
           </form>
@@ -466,16 +556,17 @@ export default function Home() {
           </div>
           <ul className="d-flex align-items-center justify-content-center">
             <li>
-              <a href="#">Feature</a>
+              <a href="/">Home</a>
             </li>
             <li>
-              <a href="#">Pricing</a>
+              <a href="/services#package-pricing">Pricing</a>
+            </li>
+           
+            <li>
+              <a href="/services">Services</a>
             </li>
             <li>
-              <a href="#">About us</a>
-            </li>
-            <li>
-              <a href="#">Faq</a>
+              <a href="contactus">Contact Us</a>
             </li>
           </ul>
           <hr />
@@ -498,7 +589,25 @@ export default function Home() {
 
         </footer>
       </div>
-      <button onClick="scrollToTop()" id="backToTopBtn"><i className="fa-solid fa-arrow-turn-up"></i></button>
-    </main>
+      {showBackToTop && (
+        <button
+          onClick={scrollToTop}
+          id="backToTopBtn"
+          style={{
+            position: "fixed",
+            bottom: "30px",
+            right: "30px",
+            backgroundColor: "#000",
+            color: "#fff",
+            paddingTop: "10px",
+            paddingBottom: "10px",
+            border: "none",
+            cursor: "pointer",
+            zIndex: 1000,
+            display: showBackToTop ? "block" : "none", // Only display when visible
+          }}
+        >
+          <i className="fa-solid fa-arrow-turn-up"></i>
+        </button>)}    </main>
   );
 }

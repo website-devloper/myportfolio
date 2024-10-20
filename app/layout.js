@@ -22,7 +22,7 @@ export default function RootLayout({ children }) {
         <link rel="stylesheet" href="/assets/css/bootstrap-lib/bootstrap.min.css" />
       </head>
       <body className="first_nav_hero_about">
-        <Navbar/>
+        <Navbar />
         {children}
         <script src="/assets/js/aos.js"></script>
         <script src="https://kit.fontawesome.com/48adce65bb.js" crossorigin="anonymous"></script>
